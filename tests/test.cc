@@ -1,17 +1,16 @@
 #include <iostream>
-#include "../src/testing/assertion_exception.h"
-#include "../src/testing/assert.h"
+#include "game_test_suite.h"
 
 using namespace std;
 using namespace raven::testing;
 
+#include "game_test_suite.h"
+
 int main() {
   cout << "game prototype test version 1.0" << endl;
   cout << "copyright (c) 2012 gediminas backevicius" << endl;
-  try {
-    Assert::Fail();
-  } catch (AssertionException& e) {
-    cout << e.message() << endl;
-  }
-  return 0;
+  GameTestSuite* suite = new GameTestSuite(); 
+  bool passed = suite->Run();
+  delete suite;
+  return passed ? 0 : 1;
 }
